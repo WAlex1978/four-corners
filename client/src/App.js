@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "shards-ui/dist/css/shards.min.css"
 
-import Comments from './components/shared/comments/Comments';
+import Search from './components/shared/search/Search';;
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Comments />
+        <Search />
       </div>
     );
   }
