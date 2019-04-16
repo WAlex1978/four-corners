@@ -5,8 +5,9 @@ app.post('/', async (req, res) => {
     try {
         const data = await Location.updateOne(
             {id: req.body.id},
-            {$push: {'comments': {name: req.body.name, body: req.body.body}}}    
+            {$addToSet: {comments: {name: req.body.name, body: req.body.body}}}   
         )
+        
         res.send(data);
     }
     catch (err) {

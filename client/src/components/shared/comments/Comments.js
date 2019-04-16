@@ -1,18 +1,25 @@
 import React, { Component, Fragment } from 'react';
 import { InputGroup, InputGroupAddon, FormInput, Button} from "shards-react";
 import { Text } from '../styled-components';
+import { postComment } from '../../../services/comments';
 
 class Comments extends Component {
+    state = {
+        name: '',
+        body: '',
+    }
+
     onChange = (e) => {
-        this.setState({comment: e.target.value});
+        this.setState({body: e.target.value});
     }
 
     onSubmit = (e) => {
         e.preventDefault();
-
-        if (this.state.comment !== '') {
-            // Send comment
+        if (this.state.body !== '') {
+            postComment(0, this.state.name, this.state.body);
         }
+
+        this.setState({body: ''});
     }
 
     render() { 
@@ -20,9 +27,9 @@ class Comments extends Component {
             <Fragment>
                 <Text>Comments</Text>
                 <InputGroup>
-                    <FormInput placeholder="Leave a Comment" />
+                    <FormInput value={this.state.body} onChange={this.onChange} placeholder="Leave a Comment" />
                     <InputGroupAddon type="append">
-                        <Button>Send</Button>
+                        <Button onClick={this.onSubmit}>Send</Button>
                     </InputGroupAddon>
                 </InputGroup>
             </Fragment>
