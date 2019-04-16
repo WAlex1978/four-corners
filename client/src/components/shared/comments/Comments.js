@@ -1,22 +1,28 @@
 import React, { Component, Fragment } from 'react';
 import { InputGroup, InputGroupAddon, FormInput, Button} from "shards-react";
 import { Text } from '../styled-components';
-import { postComment } from '../../../services/comments';
+import { getComments, postComment } from '../../../services/comments';
 
 class Comments extends Component {
     state = {
         name: '',
         body: '',
+        comments: [],
+    }
+
+    componentWillMount = async () => {
+        this.setState({comments: await getComments(0)});
+        console.log(this.state.comments)
     }
 
     onChange = (e) => {
         this.setState({body: e.target.value});
     }
 
-    onSubmit = (e) => {
+    onSubmit = async (e) => {
         e.preventDefault();
         if (this.state.body !== '') {
-            postComment(0, this.state.name, this.state.body);
+            await postComment(0, this.state.name, this.state.body);
         }
 
         this.setState({body: ''});
