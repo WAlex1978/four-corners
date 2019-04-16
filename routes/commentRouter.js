@@ -5,6 +5,7 @@ app.get('/', async (req, res) => {
     try {
         const data = await Location.find({id: req.query.id});
         res.send(data[0].comments);
+        console.log(data[0])
     }
     catch (err) {
         console.log(err)

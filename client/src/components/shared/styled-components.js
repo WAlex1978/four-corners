@@ -12,3 +12,9 @@ export const Text = styled.div`
 export const Wrapper = styled.div`
     width: ${props => props.width ? props.width: "75%"};
 `
+
+export const Flex = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`

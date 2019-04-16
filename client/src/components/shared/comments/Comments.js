@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import { InputGroup, InputGroupAddon, FormInput, Button} from "shards-react";
-import { Text } from '../styled-components';
+import { Text, Flex } from '../styled-components';
 import { getComments, postComment } from '../../../services/comments';
+import CommentsList from './CommentsList';
+import Spinner from '../Spinner';
 
 class Comments extends Component {
     state = {
@@ -11,8 +13,12 @@ class Comments extends Component {
     }
 
     componentWillMount = async () => {
-        this.setState({comments: await getComments(0)});
-        console.log(this.state.comments)
+        this.fetchComments(0);
+    }
+
+    fetchComments = async (id) => {
+        const data = await getComments(id);
+        this.setState({comments: data});
     }
 
     onChange = (e) => {
@@ -26,6 +32,7 @@ class Comments extends Component {
         }
 
         this.setState({body: ''});
+        this.fetchComments(0);
     }
 
     render() { 
@@ -38,6 +45,9 @@ class Comments extends Component {
                         <Button onClick={this.onSubmit}>Send</Button>
                     </InputGroupAddon>
                 </InputGroup>
+
+                {this.state.comments && this.state.comments.data ?
+                     <CommentsList comments={this.state.comments.data} /> : <Flex><Spinner /></Flex>}
             </Fragment>
         );
     }
