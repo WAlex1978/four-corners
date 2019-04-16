@@ -3,7 +3,7 @@ const Location = require('../models/location');
 
 app.get('/', async (req, res) => {
     try {
-        const params = {};
+        let params = {};
         if (req.query.name !== null && req.query.name !== '') {
             params = new RegExp(req.query.name, 'i');
         }
