@@ -1,4 +1,6 @@
-const initState = {}
+const initState = {
+    token: null,
+}
 
 const Reducer = (state = initState, action) => {
     switch(action.type) {

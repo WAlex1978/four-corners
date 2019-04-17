@@ -7,14 +7,14 @@ const saltRounds = 10;
 
 app.post('/register', async (req, res) => {
     try {
-        const search = await User.find({username: req.body.username.toLowerCase()})
+        const search = await User.find({username: new RegExp(req.body.username, 'i')})
         if (search.length > 1) {
             throw new Error("Username already exists");
         }
 
         const hash = await bcrypt.hash(req.body.password, saltRounds);
         const user = new User({
-            username: req.body.username.toLowerCase(),
+            username: req.body.username,
             password: hash,
         });
 
@@ -22,13 +22,13 @@ app.post('/register', async (req, res) => {
         res.send(data);
     }
     catch (err) {
-        res.send(err.toString());
+        res.status(400).send(err.toString());
     }
 });
 
 app.post('/login', async (req, res) => {
     try {
-        const search = await User.find({username: req.body.username.toLowerCase()})
+        const search = await User.find({username: new RegExp(req.body.username, 'i')})
         if (search.length === 0) {
             throw new Error("Username not found");
         }
@@ -42,7 +42,7 @@ app.post('/login', async (req, res) => {
         res.send(token);
     }
     catch (err) {
-        res.send(err.toString());
+        res.status(400).send(err.toString());
     }
 })
 

@@ -13,7 +13,7 @@ app.get('/', async (req, res) => {
         res.send(data);
     }
     catch (err) {
-        res.send(err.toString());
+        res.status(400).send(err.toString());
     }
 });
 

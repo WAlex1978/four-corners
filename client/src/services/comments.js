@@ -15,11 +15,11 @@ export const getComments = async (id) => {
     }
 }
 
-export const postComment = async (id, name, body) => {
+export const postComment = async (id, token, body) => {
     try {
         const data = await axios.post('/api/comments', {
             id: id,
-            name: name,
+            token: token,
             body: body,
         })
 

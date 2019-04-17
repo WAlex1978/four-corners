@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 import { InputGroup, InputGroupAddon, FormInput, Button} from "shards-react";
 import { Text, Flex } from '../styled-components';
 import { getComments, postComment } from '../../../services/comments';
@@ -7,7 +8,6 @@ import Spinner from '../Spinner';
 
 class Comments extends Component {
     state = {
-        name: '',
         body: '',
         comments: [],
     }
@@ -28,7 +28,7 @@ class Comments extends Component {
     onSubmit = async (e) => {
         e.preventDefault();
         if (this.state.body !== '') {
-            await postComment(0, this.state.name, this.state.body);
+            await postComment(0, this.props.token, this.state.body);
         }
 
         this.setState({body: ''});
@@ -52,5 +52,11 @@ class Comments extends Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        token: state.token,
+    }
+}
  
-export default Comments;
+export default connect (mapStateToProps) (Comments);

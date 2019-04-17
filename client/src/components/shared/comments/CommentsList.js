@@ -14,7 +14,7 @@ const CommentsList = (props) => {
                     {i !== 0 ? <Divider/> : null}
                     <Fade in>
                         <ListItem>
-                            <ListItemText primary="Alex" secondary={
+                            <ListItemText primary={comment.name} secondary={
                             <Typography color="textPrimary">{comment.body}</Typography>} />
                         </ListItem>
                     </Fade>
