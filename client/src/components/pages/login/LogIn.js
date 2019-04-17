@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { LoginBackground } from './LoginBackground';
+import { LoginCard } from './LoginCard';
 import LoginForm from './LoginForm';
-import { Flex } from '../../shared/styled-components';
 
 class Login extends Component {
     render() { 
         return (
-            <Flex>
-                {!this.props.token ? <LoginForm /> : <Redirect to='/' />}
-            </Flex>
+            <LoginBackground>
+                <LoginCard>
+                    {!this.props.token ? <LoginForm /> : <Redirect to='/' />}
+                </LoginCard>
+            </LoginBackground>
         );
     }
 }

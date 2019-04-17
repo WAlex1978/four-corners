@@ -28,10 +28,10 @@ const LoginForm = (props) => {
     }
 
     return (
-        <form onSubmit={onSubmit}>
-            <FormInput placeholder="Username" value={username} onChange={changeUsername} />
+        <form onSubmit={onSubmit} style={{width: "100%"}}>
+            <FormInput placeholder="Username" value={username} onChange={changeUsername}/>
             <FormInput placeholder="Password" type="password" value={password} onChange={changePassword} />
-            <Button block type="submit">Log In</Button>
+            <Button block type="submit" style={{marginTop: "15px"}}>Log In</Button>
         </form>
     );
 }
