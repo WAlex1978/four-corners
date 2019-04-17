@@ -11,8 +11,10 @@ const LoginForm = (props) => {
     const onSubmit = async (e) => {
         e.preventDefault();
 
+        // Call login service
         const token = await logIn(username, password);
 
+        // Save token to local storage and global state
         if (token && token.data) {
             saveState(token.data);
             props.logIn(token.data);

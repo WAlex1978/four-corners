@@ -10,6 +10,8 @@ class Login extends Component {
         return (
             <LoginBackground>
                 <LoginCard>
+                    
+                    {/* If user is logged in, redirect to home page */}
                     {!this.props.token ? <LoginForm /> : <Redirect to='/' />}
                 </LoginCard>
             </LoginBackground>

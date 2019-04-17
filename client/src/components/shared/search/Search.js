@@ -11,7 +11,12 @@ const Search = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        search(params);
+
+        // If search params are not empty
+        // Search for location
+        if (params !== '') {
+            search(params);
+        }
     }
 
     return (
