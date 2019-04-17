@@ -3,6 +3,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
 import Fade from '@material-ui/core/Fade';
 
 const CommentsList = (props) => {
@@ -13,7 +14,8 @@ const CommentsList = (props) => {
                     {i !== 0 ? <Divider/> : null}
                     <Fade in>
                         <ListItem>
-                            <ListItemText>{comment.body}</ListItemText>
+                            <ListItemText primary="Alex" secondary={
+                            <Typography color="textPrimary">{comment.body}</Typography>} />
                         </ListItem>
                     </Fade>
                 </Fragment>
