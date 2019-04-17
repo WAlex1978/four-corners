@@ -7,6 +7,7 @@ export const loadState = () => {
 
         return ({
             token: token,
+            locationId: 0,
         })
     }
     catch (err) {

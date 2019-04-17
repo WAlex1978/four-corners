@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { saveState } from '../localStorage';
 
 export const logIn = async (username, password) => {
     try {
@@ -8,7 +7,7 @@ export const logIn = async (username, password) => {
             password: password,
         })
 
-        saveState(data.data);
+        return data;
     }  
     catch (err) {
         console.log(err)
