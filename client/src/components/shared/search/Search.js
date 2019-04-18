@@ -19,6 +19,9 @@ const Search = () => {
         if (params !== '') {
             search(params);
         }
+
+        // Reset search bar
+        setParams('');
     }
 
     return (

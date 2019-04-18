@@ -18,7 +18,7 @@ class Appbar extends Component {
 
     render() {
         return (
-        <Navbar type="dark" theme="info" expand="md">
+        <Navbar type="dark" theme="primary" expand="md">
             <NavbarBrand tag={Link} to="/">Four Corners</NavbarBrand>
 
             <Nav navbar className="ml-auto">
