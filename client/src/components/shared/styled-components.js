@@ -8,6 +8,9 @@ export const Text = styled.div`
     margin: ${props => props.margin ? props.margin : null};
     text-shadow: ${props => props.shadow ? props.shadow : null};
 `
+export const Section = styled.div`
+    margin-top: 20px;
+`
 
 export const Wrapper = styled.div`
     width: ${props => props.width ? props.width: "70%"};

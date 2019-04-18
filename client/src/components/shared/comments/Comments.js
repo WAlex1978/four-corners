@@ -18,6 +18,8 @@ class Comments extends Component {
 
     onSubmit = async (e) => {
         e.preventDefault();
+
+        // If comment is not an empty string
         if (this.state.body !== '') {
             await postComment(this.props.id, this.props.token, this.state.body);
         }
@@ -30,12 +32,14 @@ class Comments extends Component {
         return (
             <Fragment>
                 <Text>Comments</Text>
-                <InputGroup>
-                    <FormInput value={this.state.body} onChange={this.onChange} placeholder="Leave a Comment" />
-                    <InputGroupAddon type="append">
-                        <Button onClick={this.onSubmit}>Send</Button>
-                    </InputGroupAddon>
-                </InputGroup>
+                <form onSubmit={this.onSubmit}>
+                    <InputGroup>
+                        <FormInput value={this.state.body} onChange={this.onChange} placeholder="Leave a Comment" />
+                        <InputGroupAddon type="append">
+                            <Button onClick={this.onSubmit}>Send</Button>
+                        </InputGroupAddon>
+                    </InputGroup>
+                </form>
 
                 {this.state.comments ? <CommentsList comments={this.state.comments} /> : <Flex><Spinner /></Flex> }
             </Fragment>
