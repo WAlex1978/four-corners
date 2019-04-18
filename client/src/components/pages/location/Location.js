@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import Appbar from '../../shared/appbar/Appbar';
 import Spinner from '../../shared/Spinner';
-import LocationImage from './LocationImage';
-import Comments from '../../shared/comments/Comments';
+import Image from './Image';
+import Toolbar from './Visited';
+import Comments from './comments/Comments';
 import { getLocation } from '../../../services/search';
 import { Section, Flex, Wrapper, Text } from '../../shared/styled-components';
 
@@ -25,8 +26,8 @@ class Location extends Component {
                 <Appbar />
                 {this.state.location && this.state.location.data ? (
                     <Wrapper>
-                        <LocationImage image={this.state.location.data.image} />
-
+                        <Image image={this.state.location.data.image} />
+                        <Toolbar />
                         <Comments id={this.state.id} comments={this.state.location.data.comments} /> 
                     </Wrapper>
                 ) : <Flex><Spinner /></Flex> }
