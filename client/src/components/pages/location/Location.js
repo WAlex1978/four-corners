@@ -3,7 +3,7 @@ import Appbar from '../../shared/appbar/Appbar';
 import Spinner from '../../shared/Spinner';
 import Comments from '../../shared/comments/Comments';
 import { getLocation } from '../../../services/search';
-import { Flex } from '../../shared/styled-components';
+import { Flex, Wrapper } from '../../shared/styled-components';
 
 class Location extends Component {
     state = {
@@ -23,7 +23,9 @@ class Location extends Component {
             <Fragment>
                 <Appbar />
                 {this.state.location && this.state.location.data ? (
-                    <Comments id={this.state.id} comments={this.state.location.data.comments} /> 
+                    <Wrapper>
+                        <Comments id={this.state.id} comments={this.state.location.data.comments} /> 
+                    </Wrapper>
                 ) : <Flex><Spinner /></Flex> }
             </Fragment>
         );

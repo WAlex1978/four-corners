@@ -10,7 +10,12 @@ export const Text = styled.div`
 `
 
 export const Wrapper = styled.div`
-    width: ${props => props.width ? props.width: "75%"};
+    width: ${props => props.width ? props.width: "70%"};
+    margin: auto;
+
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `
 
 export const Flex = styled.div`
