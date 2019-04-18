@@ -21,7 +21,7 @@ const location = mongoose.Schema({
         type: String,
         required: true,
     },
-    visited: Number,
+    visited: [],
     comments: [],
 })
 

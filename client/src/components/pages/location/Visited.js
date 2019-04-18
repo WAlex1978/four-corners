@@ -2,7 +2,7 @@ import React from 'react';
 import { Nav, NavItem, NavLink } from "shards-react";
 import { Button, InputGroup, InputGroupAddon, InputGroupText } from "shards-react";
 
-const Visited = () => {
+const Visited = (props) => {
     return (
         <Nav>
             <NavItem className="ml-auto">
@@ -10,10 +10,10 @@ const Visited = () => {
                     <InputGroup>
 
                     <InputGroupAddon type="prepend">
-                            <InputGroupText>0</InputGroupText>
+                            <InputGroupText>{props.visited.length}</InputGroupText>
                         </InputGroupAddon>
                         <InputGroupAddon type="append">
-                            <Button theme="secondary">Visited</Button>
+                            <Button>Visited</Button>
                         </InputGroupAddon>
                         
 

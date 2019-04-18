@@ -27,7 +27,7 @@ class Location extends Component {
                 {this.state.location && this.state.location.data ? (
                     <Wrapper>
                         <Image image={this.state.location.data.image} />
-                        <Toolbar />
+                        <Toolbar visited={this.state.location.data.visited} />
                         <Comments id={this.state.id} comments={this.state.location.data.comments} /> 
                     </Wrapper>
                 ) : <Flex><Spinner /></Flex> }
