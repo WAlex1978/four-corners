@@ -9,16 +9,7 @@ import Spinner from '../Spinner';
 class Comments extends Component {
     state = {
         body: '',
-        comments: [],
-    }
-
-    componentWillMount = async () => {
-        this.fetchComments(this.props.location);
-    }
-
-    fetchComments = async (id) => {
-        const data = await getComments(id);
-        this.setState({comments: data});
+        comments: this.props.comments,
     }
 
     onChange = (e) => {
@@ -28,11 +19,11 @@ class Comments extends Component {
     onSubmit = async (e) => {
         e.preventDefault();
         if (this.state.body !== '') {
-            await postComment(this.props.location, this.props.token, this.state.body);
+            await postComment(this.props.id, this.props.token, this.state.body);
         }
 
-        this.setState({body: ''});
-        this.fetchComments(this.props.location);
+        const data = await getComments(this.props.id);
+        this.setState({ body: '', comments: data.data })
     }
 
     render() { 
@@ -46,8 +37,7 @@ class Comments extends Component {
                     </InputGroupAddon>
                 </InputGroup>
 
-                {this.state.comments && this.state.comments.data ?
-                     <CommentsList comments={this.state.comments.data} /> : <Flex><Spinner /></Flex>}
+                {this.state.comments ? <CommentsList comments={this.state.comments} /> : <Flex><Spinner /></Flex> }
             </Fragment>
         );
     }

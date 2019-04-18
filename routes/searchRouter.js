@@ -23,4 +23,15 @@ app.get('/', async (req, res) => {
     }
 });
 
+app.get('/location', async (req, res) => {
+    try {
+        const data = await Location.findOne({id: req.query.id});
+
+        res.send(data);
+    }
+    catch (err) {
+        res.status(400).send(err.toString());
+    }
+})
+
 module.exports = app;
