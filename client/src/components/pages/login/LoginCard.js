@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const LoginCard = styled.div`
-    background-color: rgba(250, 250, 250, .90);
+    background-color: rgba(250, 250, 250, .9);
     border-radius: 5px;
     display: flex;
     flex-direction: column;

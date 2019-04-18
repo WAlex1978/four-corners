@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { InputGroup, InputGroupAddon, FormInput, Button} from "shards-react";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { InputGroup, InputGroupAddon, InputGroupText, FormInput } from "shards-react";
 import { search } from '../../../services/search';
 
 const Search = () => {
@@ -20,12 +22,14 @@ const Search = () => {
     }
 
     return (
-        <InputGroup>
-            <FormInput value={params} onChange={onChange}/>
-            <InputGroupAddon type="append">
-                <Button theme="dark" onClick={onSubmit}>Search</Button>
-            </InputGroupAddon>
-        </InputGroup>
+        <form onSubmit={onSubmit}>
+            <InputGroup size="sm" seamless>
+                    <InputGroupAddon type="prepend">
+                        <InputGroupText><FontAwesomeIcon icon={faSearch} /></InputGroupText>
+                    </InputGroupAddon>
+                    <FormInput className="border-0" placeholder="Search..." value={params} onChange={onChange}/>
+            </InputGroup>
+        </form>
     )
 }
 
