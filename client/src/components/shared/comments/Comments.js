@@ -13,7 +13,7 @@ class Comments extends Component {
     }
 
     componentWillMount = async () => {
-        this.fetchComments(this.props.locationId);
+        this.fetchComments(this.props.location);
     }
 
     fetchComments = async (id) => {
@@ -28,11 +28,11 @@ class Comments extends Component {
     onSubmit = async (e) => {
         e.preventDefault();
         if (this.state.body !== '') {
-            await postComment(this.props.locationId, this.props.token, this.state.body);
+            await postComment(this.props.location, this.props.token, this.state.body);
         }
 
         this.setState({body: ''});
-        this.fetchComments(this.props.locationId);
+        this.fetchComments(this.props.location);
     }
 
     render() { 
@@ -55,8 +55,7 @@ class Comments extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        token: state.token,
-        locationId: state.locationId,
+        token: state.token
     }
 }
  

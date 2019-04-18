@@ -4,7 +4,7 @@ require('./connection');
 initLocations = async () => {
     try {
         const location = new Location({
-            id: 0,
+            id: "pyramids",
             image: "/images/pyramids.jpg",
             name: "Great Pyramids",
             location: "Giza, Egypt",
