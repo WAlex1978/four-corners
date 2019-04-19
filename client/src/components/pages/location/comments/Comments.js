@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { InputGroup, InputGroupAddon, FormInput, Button} from "shards-react";
-import { Text, Flex } from '../../../shared/styled-components';
+import { Wrapper, Text, Flex } from '../../../shared/styled-components';
 import { getComments, postComment } from '../../../../services/comments';
 import CommentsList from './CommentsList';
 import Spinner from '../../../shared/Spinner';
@@ -31,7 +32,7 @@ class Comments extends Component {
 
     render() { 
         return (
-            <Fragment>
+            <Wrapper width="95%">
                 {this.props.token ? (
                     <Fragment>
                         <Text>Comments</Text>
@@ -49,7 +50,7 @@ class Comments extends Component {
                     </Link> }
 
                 {this.state.comments ? <CommentsList comments={this.state.comments} /> : <Flex><Spinner /></Flex> }
-            </Fragment>
+            </Wrapper>
         );
     }
 }

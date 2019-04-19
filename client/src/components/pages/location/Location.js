@@ -1,11 +1,12 @@
 import React, { Component, Fragment } from 'react';
+import styled from 'styled-components';
 import Appbar from '../../shared/appbar/Appbar';
 import Spinner from '../../shared/Spinner';
 import Image from './Image';
 import Toolbar from './Visited';
 import Comments from './comments/Comments';
 import { getLocation } from '../../../services/search';
-import { Flex, Wrapper} from '../../shared/styled-components';
+import { Background, Flex, Wrapper, Card} from '../../shared/styled-components';
 
 class Location extends Component {
     state = {
@@ -23,12 +24,15 @@ class Location extends Component {
     render() { 
         return (
             <Fragment>
+                <Background />
                 <Appbar />
                 {this.state.location && this.state.location.data ? (
                     <Wrapper>
-                        <Image image={this.state.location.data.image} />
-                        <Toolbar id={this.state.id} visited={this.state.location.data.visited} />
-                        <Comments id={this.state.id} comments={this.state.location.data.comments} /> 
+                        <Card>
+                            <Image image={this.state.location.data.image} />
+                            <Toolbar id={this.state.id} visited={this.state.location.data.visited} />
+                            <Comments id={this.state.id} comments={this.state.location.data.comments} /> 
+                        </Card>
                     </Wrapper>
                 ) : <Flex><Spinner /></Flex> }
             </Fragment>

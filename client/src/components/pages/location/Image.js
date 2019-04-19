@@ -5,7 +5,6 @@ const Image = styled.div`
     background-size: cover;
     background-position: center;
     height: 400px;
-    margin-top: 20px;
 `
 
 export default Image;
