@@ -1,8 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
+import decode from 'jwt-decode';
+import { connect } from 'react-redux';
 import { Nav, NavItem, NavLink } from "shards-react";
 import { Button, InputGroup, InputGroupAddon, InputGroupText } from "shards-react";
+import { addVisited } from '../../../services/visited';
 
 const Visited = (props) => {
+
+    // Decode username from token
+    const username = decode(props.token);
+
+    // Check if username has visited current location
+    const checkVisited = () => { 
+        for (let i = 0; i < visited.length; i++ ) {
+            if (visited[i].username === username.username) {
+                return true;
+            }
+        }
+    
+        return false;
+    }
+
+    const [visited, setVisited] = useState(props.visited);
+    const [active, setActive] = useState(checkVisited());
+
+    // On click, add username to visited list
+    // Update visited count and disable button
+    const onClick = async (id, token) => {
+        await addVisited(id, token);
+        setVisited(visited.push(username));
+        setActive(true);
+    }
+
     return (
         <Nav>
             <NavItem className="ml-auto">
@@ -13,9 +42,10 @@ const Visited = (props) => {
                             <InputGroupText>{props.visited.length}</InputGroupText>
                         </InputGroupAddon>
                         <InputGroupAddon type="append">
-                            <Button>Visited</Button>
-                        </InputGroupAddon>
-                        
+                            <Button onClick={() => onClick(props.id, props.token)} disabled={active}>
+                                Visited
+                            </Button>
+                        </InputGroupAddon>    
 
                     </InputGroup>
                 </NavLink>
@@ -24,4 +54,10 @@ const Visited = (props) => {
     )
 }
 
-export default Visited;
+const mapStateToProps = (state) => {
+    return {
+        token: state.token
+    }
+}
+
+export default connect (mapStateToProps) (Visited);

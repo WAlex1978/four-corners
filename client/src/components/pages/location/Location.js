@@ -5,7 +5,7 @@ import Image from './Image';
 import Toolbar from './Visited';
 import Comments from './comments/Comments';
 import { getLocation } from '../../../services/search';
-import { Section, Flex, Wrapper, Text } from '../../shared/styled-components';
+import { Flex, Wrapper} from '../../shared/styled-components';
 
 class Location extends Component {
     state = {
@@ -27,7 +27,7 @@ class Location extends Component {
                 {this.state.location && this.state.location.data ? (
                     <Wrapper>
                         <Image image={this.state.location.data.image} />
-                        <Toolbar visited={this.state.location.data.visited} />
+                        <Toolbar id={this.state.id} visited={this.state.location.data.visited} />
                         <Comments id={this.state.id} comments={this.state.location.data.comments} /> 
                     </Wrapper>
                 ) : <Flex><Spinner /></Flex> }
