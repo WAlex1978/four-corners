@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { InputGroup, InputGroupAddon, FormInput, Button} from "shards-react";
 import { Text, Flex } from '../../../shared/styled-components';
 import { getComments, postComment } from '../../../../services/comments';
@@ -31,15 +32,21 @@ class Comments extends Component {
     render() { 
         return (
             <Fragment>
-                <Text>Comments</Text>
-                <form onSubmit={this.onSubmit}>
-                    <InputGroup>
-                        <FormInput value={this.state.body} onChange={this.onChange} placeholder="Leave a Comment" />
-                        <InputGroupAddon type="append">
-                            <Button onClick={this.onSubmit}>Send</Button>
-                        </InputGroupAddon>
-                    </InputGroup>
-                </form>
+                {this.props.token ? (
+                    <Fragment>
+                        <Text>Comments</Text>
+                        <form onSubmit={this.onSubmit}>
+                            <InputGroup>
+                                <FormInput value={this.state.body} onChange={this.onChange} placeholder="Leave a Comment" />
+                                <InputGroupAddon type="append">
+                                    <Button onClick={this.onSubmit}>Send</Button>
+                                </InputGroupAddon>
+                            </InputGroup>
+                        </form>
+                    </Fragment>
+                ) : <Link to="/login" style={{textDecoration: "none"}}>
+                        <Text size="1.1rem" align="center">Log in to leave a comment</Text>
+                    </Link> }
 
                 {this.state.comments ? <CommentsList comments={this.state.comments} /> : <Flex><Spinner /></Flex> }
             </Fragment>

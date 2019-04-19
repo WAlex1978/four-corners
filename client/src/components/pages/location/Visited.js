@@ -7,11 +7,19 @@ import { addVisited } from '../../../services/visited';
 
 const Visited = (props) => {
 
+    var username = null;
+
     // Decode username from token
-    const username = decode(props.token);
+    if (props.token) {
+        username = decode(props.token);
+    }
 
     // Check if username has visited current location
     const checkVisited = () => { 
+        if (username === null) {
+            return true;
+        }
+
         for (let i = 0; i < visited.length; i++ ) {
             if (visited[i].username === username.username) {
                 return true;
