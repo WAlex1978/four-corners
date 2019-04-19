@@ -6,6 +6,7 @@ import "shards-ui/dist/css/shards.min.css"
 import Home from './components/pages/home/Home';
 import Login from './components/pages/login/Login';
 import Location from './components/pages/location/Location';
+import User from './components/pages/user/User';
 
 class App extends Component {  
   render() {
@@ -14,6 +15,7 @@ class App extends Component {
         <Route exact path='/' component={Home} />
         <Route path='/login' component={Login} />
         <Route path='/location/:location' component={Location} />
+        <Route path='/user/:user' component={User} />
       </Router>
     );
   }

@@ -1,19 +1,25 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Navbar, NavbarBrand, Nav, NavItem } from 'shards-react';
 import { Dropdown, DropdownMenu, DropdownItem } from 'shards-react';
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import decode from 'jwt-decode';
 import Search from '../search/Search';
 
 class Appbar extends Component {
     state = {
         dropdownOpen: false,
+        redirect: false,
     }
 
     toggleDropdown = () => {
         this.setState({ dropdownOpen: !this.state.dropdownOpen });
+    }
+
+    redirect = () => {
+        this.setState({redirect: true})
     }
 
     render() {
@@ -26,7 +32,7 @@ class Appbar extends Component {
 
                     {/* If user is signed in, link to user profile */}
                     {/* Else, display links to login and register pages */}
-                    <NavItem onClick={this.props.token ? null : this.toggleDropdown} style={{marginRight: "10px", color: "white", cursor: "pointer"}}>
+                    <NavItem onClick={this.props.token ? () => this.redirect() : this.toggleDropdown} style={{marginRight: "10px", color: "white", cursor: "pointer"}}>
                         <FontAwesomeIcon icon={faUser} />
                     </NavItem>
 
@@ -41,6 +47,8 @@ class Appbar extends Component {
                 <Search />
             </Nav>
 
+            {/* If redirect is true */}
+            {this.state.redirect ? <Redirect to={'/user/' + decode(this.props.token).username} /> : null }
 
         </Navbar>
         );
