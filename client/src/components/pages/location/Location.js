@@ -5,6 +5,7 @@ import Image from './Image';
 import Toolbar from './Visited';
 import Body from './Body';
 import Comments from './comments/Comments';
+import Divider from '@material-ui/core/Divider';
 import { getLocation } from '../../../services/search';
 import { Background, Flex, Wrapper, Card} from '../../shared/styled-components';
 
@@ -35,6 +36,7 @@ class Location extends Component {
                             <Image image={this.state.location.data.image} />
                             <Toolbar id={this.state.id} visited={this.state.location.data.visited} />
                             <Body location={this.state.location.data} />
+                            <Divider />
                             <Comments id={this.state.id} comments={this.state.location.data.comments} /> 
                         </Card>
                     </Wrapper>

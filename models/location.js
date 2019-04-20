@@ -17,7 +17,8 @@ const location = mongoose.Schema({
         type: String,
         required: true,
     },
-    desc: {
+    desc: [],
+    ref: {
         type: String,
         required: true,
     },

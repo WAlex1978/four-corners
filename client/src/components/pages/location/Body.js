@@ -3,10 +3,17 @@ import { Text, Wrapper } from '../../shared/styled-components';
 
 const Body = (props) => {
     return (
-        <Wrapper width="93%" style={{marginTop: "30px", marginBottom: "20px"}}>
-            <Text bottom="20px">{props.location.name}</Text>
-            <Text bottom="20px" size="1.rem">{props.location.desc}</Text>
-            <Text bottom="50px" size="1.rem">Location: {props.location.location}</Text>
+        <Wrapper width="93%" style={{marginTop: "20px", marginBottom: "20px"}}>
+            <Text bottom="2px">{props.location.name}</Text>
+            <Text bottom="20px" size=".95rem">Location: {props.location.location}</Text>
+            {props.location.desc.map(desc => (
+                <Text bottom="20px" size=".95rem">{desc}</Text>
+            ))}
+            <Text bottom="35px" size=".95rem">
+                <a href={props.location.ref} target="_blank" style={{textDecoration: "none"}}>
+                    {props.location.ref}
+                </a>
+            </Text>
         </Wrapper>
     )
 }

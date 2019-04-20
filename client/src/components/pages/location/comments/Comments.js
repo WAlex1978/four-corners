@@ -31,7 +31,7 @@ class Comments extends Component {
 
     render() { 
         return (
-            <Wrapper width="95%" style={{marginTop: "20px"}}>
+            <Wrapper width="95%" style={{marginTop: "35px"}}>
                 {this.props.token ? (
                     <Fragment>
                         <Text>Comments</Text>
