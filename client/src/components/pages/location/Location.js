@@ -11,13 +11,23 @@ import { Background, Flex, Wrapper, Card} from '../../shared/styled-components';
 
 class Location extends Component {
     state = {
-        id: this.props.match.params.location,
+        id: null,
         location: null,
     }
 
     componentWillMount = async () => {
 
         // Fetch location data
+        await this.setState({id: this.props.match.params.location})
+        this.getLocation();
+    }
+
+    componentWillReceiveProps = async () => {
+        await this.setState({id: this.props.history.location.id});
+        this.getLocation();
+    }
+
+    getLocation = async () => {
         const data = await getLocation(this.state.id);
         this.setState({location: data});
     }
