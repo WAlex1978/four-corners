@@ -14,6 +14,7 @@ export const Text = styled.div`
     color: ${props => props.color ? props.color : "black"};
     text-align: ${props => props.align ? props.align : null};
     margin: ${props => props.margin ? props.margin : null};
+    margin-bottom: ${props => props.bottom ? props.bottom: null};
     text-shadow: ${props => props.shadow ? props.shadow : null};
 `
 export const Section = styled.div`
@@ -22,10 +23,11 @@ export const Section = styled.div`
 
 export const Wrapper = styled.div`
     width: ${props => props.width ? props.width: "70%"};
+    display: ${props => props.flex ? "flex" : null};
     margin: auto;
 
     @media (max-width: 768px) {
-        width: 100%;
+        width: 95%;
     }
 `
 
@@ -39,6 +41,13 @@ export const Card = styled.div`
     background-color: #fff;
     border: 1px solid rgb(214, 222, 229);
     border-radius: 10px;
-    margin: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
     overflow: hidden;
+
+    @media (max-width: 768px) {
+        margin: 5px;
+    }
 `

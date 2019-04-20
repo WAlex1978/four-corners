@@ -20,12 +20,15 @@ const CommentsList = (props) => {
                                 <Avatar src="/images/avatar.png"/>
                             </ListItemAvatar>
                             <ListItemText 
-                                primary = { <Typography variant="subtitle1">{comment.name}</Typography> }
-                                secondary = {
+                                primary = {
                                     <Fragment>
-                                        <Typography paragraph color="textPrimary">{comment.body}</Typography>
-                                        <Typography variant="caption">{comment.date}</Typography>
-                                    </Fragment>} />
+                                        {comment.name}
+                                        <Typography paragraph color="textPrimary">
+                                            {comment.body}
+                                        </Typography>
+                                    </Fragment>}
+                                secondary = {<Typography variant="caption">{comment.date}</Typography>} 
+                            />
                         </ListItem>
                     </Fade>
                 </Fragment>
