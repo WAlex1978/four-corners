@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { FormInput, Button} from "shards-react";
 import { logIn } from '../../../services/auth';
 import { saveState } from '../../../localStorage';
@@ -18,6 +19,8 @@ const LoginForm = (props) => {
         if (token && token.data) {
             saveState(token.data);
             props.logIn(token.data);
+
+            props.history.goBack();
         }
     }
 
@@ -47,4 +50,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
  
-export default connect (null, mapDispatchToProps) (LoginForm);
+export default withRouter (connect (null, mapDispatchToProps) (LoginForm));

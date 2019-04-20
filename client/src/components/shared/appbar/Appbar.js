@@ -18,6 +18,7 @@ class Appbar extends Component {
     }
 
     redirect = () => {
+        console.log(this.props.history)
         this.props.history.push('/user/' + decode(this.props.token).username);
     }
 
@@ -36,7 +37,7 @@ class Appbar extends Component {
                     </NavItem>
 
                     <DropdownMenu right>
-                        <DropdownItem tag={Link} to="login">Log In</DropdownItem>
+                        <DropdownItem tag={Link} to="/login">Log In</DropdownItem>
                         <DropdownItem tag={Link} to="/">Register</DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
