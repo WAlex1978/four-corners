@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Navbar, NavbarBrand, Nav, NavItem } from 'shards-react';
 import { Dropdown, DropdownMenu, DropdownItem } from 'shards-react';
 import { faUser } from "@fortawesome/free-solid-svg-icons";
@@ -17,11 +17,6 @@ class Appbar extends Component {
         this.setState({ dropdownOpen: !this.state.dropdownOpen });
     }
 
-    redirect = () => {
-        console.log(this.props.history)
-        this.props.history.push('/user/' + decode(this.props.token).username);
-    }
-
     render() {
         return (
         <Navbar type="dark" theme="primary" expand="md">
@@ -32,13 +27,20 @@ class Appbar extends Component {
 
                     {/* If user is signed in, link to user profile */}
                     {/* Else, display links to login and register pages */}
-                    <NavItem onClick={this.props.token ? () => this.redirect() : this.toggleDropdown} style={{marginRight: "10px", color: "white", cursor: "pointer"}}>
+                    <NavItem onClick={this.toggleDropdown} style={{marginRight: "15px", color: "white", cursor: "pointer"}}>
                         <FontAwesomeIcon icon={faUser} />
                     </NavItem>
 
                     <DropdownMenu right>
-                        <DropdownItem tag={Link} to="/login">Log In</DropdownItem>
-                        <DropdownItem tag={Link} to="/">Register</DropdownItem>
+                        {this.props.token ? 
+                        <Fragment>
+                            <DropdownItem tag={Link} to={"/user/" + decode(this.props.token).username}>My Profile</DropdownItem>
+                            <DropdownItem tag={Link} to="/">Logout</DropdownItem>
+                        </Fragment> : 
+                        <Fragment>
+                            <DropdownItem tag={Link} to="/login">Log In</DropdownItem>
+                            <DropdownItem tag={Link} to="/">Register</DropdownItem>
+                        </Fragment> }
                     </DropdownMenu>
                 </Dropdown>
             </Nav>
@@ -58,4 +60,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default withRouter (connect (mapStateToProps) (Appbar));
+export default connect (mapStateToProps) (Appbar);

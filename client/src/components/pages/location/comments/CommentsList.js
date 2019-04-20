@@ -8,7 +8,7 @@ import Fade from '@material-ui/core/Fade';
 
 const CommentsList = (props) => {
     return (
-        <List>
+        <List style={{marginBottom: "50px"}}>
             {props.comments.map((comment, i) => (
                 <Fragment key={i}>
                     {i !== 0 ? <Divider/> : null}
