@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const dateFormat = require('dateformat');
+const now = new Date();
 
 const comment = mongoose.Schema({
     name: {
@@ -10,8 +12,8 @@ const comment = mongoose.Schema({
         required: true,
     },
     date: {
-        type: Date,
-        default: Date.now,
+        type: String,
+        default: dateFormat(now, "mmmm dS, yy"),
     },
 })
 
