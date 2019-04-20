@@ -23,7 +23,10 @@ class Location extends Component {
     }
 
     componentWillReceiveProps = async () => {
-        await this.setState({id: this.props.history.location.id});
+
+        // Update location id and wipe previous location data
+        // Fetch location data
+        await this.setState({id: this.props.history.location.id, location: null});
         this.getLocation();
     }
 
