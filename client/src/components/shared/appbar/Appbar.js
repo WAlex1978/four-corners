@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Navbar, NavbarBrand, Nav, NavItem } from 'shards-react';
 import { Dropdown, DropdownMenu, DropdownItem } from 'shards-react';
 import { faUser } from "@fortawesome/free-solid-svg-icons";
@@ -11,7 +11,6 @@ import Search from '../search/Search';
 class Appbar extends Component {
     state = {
         dropdownOpen: false,
-        redirect: false,
     }
 
     toggleDropdown = () => {
@@ -19,7 +18,7 @@ class Appbar extends Component {
     }
 
     redirect = () => {
-        this.setState({redirect: true})
+        this.props.history.push('/user/' + decode(this.props.token).username);
     }
 
     render() {
@@ -47,9 +46,6 @@ class Appbar extends Component {
                 <Search />
             </Nav>
 
-            {/* If redirect is true */}
-            {this.state.redirect ? <Redirect to={'/user/' + decode(this.props.token).username} /> : null }
-
         </Navbar>
         );
     }
@@ -61,4 +57,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect (mapStateToProps) (Appbar);
+export default withRouter (connect (mapStateToProps) (Appbar));

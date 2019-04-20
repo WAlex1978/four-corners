@@ -1,27 +1,30 @@
 import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { InputGroup, InputGroupAddon, InputGroupText, FormInput } from "shards-react";
 import { search } from '../../../services/search';
 
-const Search = () => {
+const Search = (props) => {
     const [params, setParams] = useState('');
 
     const onChange = (e) => {
         setParams(e.target.value);
     }
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
+        let data = null;
 
         // If search params are not empty
         // Search for location
         if (params !== '') {
-            search(params);
+            data = await search(params);
         }
 
-        // Reset search bar
-        setParams('');
+        if (data && data.data.length === 1) {
+            props.history.push('/location/' + data.data[0].id);
+        }
     }
 
     return (
@@ -36,4 +39,4 @@ const Search = () => {
     )
 }
 
-export default Search;
+export default withRouter (Search);

@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import styled from 'styled-components';
 import Appbar from '../../shared/appbar/Appbar';
 import Spinner from '../../shared/Spinner';
 import Image from './Image';
