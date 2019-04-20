@@ -14,7 +14,8 @@ app.get('/', async (req, res) => {
 
         // Search for location by search params
         // If search params are empty, return all locations
-        const data = await Location.find({name: params});
+        // Return only id, name, and image fields
+        const data = await Location.find({name: params}, {id: 1, name: 1, image: 1});
 
         res.send(data);
     }

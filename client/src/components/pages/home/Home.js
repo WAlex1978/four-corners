@@ -12,6 +12,7 @@ class Home extends Component {
 
     componentWillMount = async () => {
         const data = await search();
+        console.log(data)
         this.setState({locations: data});
     }
 
