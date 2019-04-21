@@ -41,7 +41,12 @@ class Appbar extends Component {
                     <DropdownMenu right>
                         {this.props.token ? 
                         <Fragment>
-                            <DropdownItem tag={Link} to={"/user/" + decode(this.props.token).username}>My Profile</DropdownItem>
+                            <DropdownItem onClick={
+                                () => this.props.history.push({
+                                    pathname: "/user/" + decode(this.props.token).username,
+                                    username: decode(this.props.token).username,
+                                })
+                            }>My Profile</DropdownItem>
                             <DropdownItem onClick={() => this.logOut()}>Logout</DropdownItem>
                         </Fragment> : 
                         <Fragment>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Flex } from '../../shared/styled-components';
 import Spinner from '../../shared/Spinner';
-import { getVisited } from '../../../services/visited';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -25,23 +24,16 @@ const styles = theme => ({
 
 class Visited extends Component {
     state = {
-        locations: [],
         classes: this.props.classes,
     }
 
-    componentWillMount = async () => {
-
-        const locations = await getVisited(this.props.username);
-        this.setState({locations: locations});
-    }
-
-    render() { 
+    render() {
         return (
             <Card>
-                {this.state.locations && this.state.locations.data ? 
+                {this.props.locations && this.props.locations.length > 0 ? 
                     <div className={this.state.classes.root}>
                         <GridList cellHeight={250} className={this.state.classes.gridList} cols={2}>
-                            {this.state.locations.data.map((location, i) => (
+                            {this.props.locations.map((location, i) => (
                                 <GridListTile key={i} component={Link} to={"/location/" + location.id}>
                                     <img src={location.image} alt={location.name} />
                                     <GridListTileBar title={location.name} />

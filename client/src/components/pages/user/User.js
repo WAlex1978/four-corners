@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react';
+import { withRouter } from 'react-router-dom';
+import { getVisited } from '../../../services/visited';
 import Appbar from '../../shared/appbar/Appbar';
 import Visited from './Visited';
 import { Background } from '../../shared/styled-components';
@@ -6,6 +8,23 @@ import { Background } from '../../shared/styled-components';
 class User extends Component {
     state = {
         user: this.props.match.params.user,
+        locations: [],
+    }
+
+    getVisited = async () => {
+        const locations = await getVisited(this.state.user);
+        this.setState({locations: locations.data});
+    }
+
+    componentWillMount = () => {
+        this.getVisited();
+    }
+
+    componentWillReceiveProps = async () => {
+
+        // Update username and wipe past location data
+        await this.setState({user: this.props.history.location.username, location: []});
+        this.getVisited();
     }
 
     render() { 
@@ -13,10 +32,10 @@ class User extends Component {
             <Fragment>
                 <Appbar />
                 <Background />
-                <Visited username={this.state.user} />
+                <Visited locations={this.state.locations} />
             </Fragment>
         );
     }
 }
  
-export default User;
+export default withRouter (User);
