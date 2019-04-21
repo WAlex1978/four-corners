@@ -30,10 +30,10 @@ class Visited extends Component {
     render() {
         return (
             <Card>
-                {this.props.locations && this.props.locations.length > 0 ? 
+                {this.props.locations && this.props.locations.data ? 
                     <div className={this.state.classes.root}>
                         <GridList cellHeight={250} className={this.state.classes.gridList} cols={2}>
-                            {this.props.locations.map((location, i) => (
+                            {this.props.locations.data.map((location, i) => (
                                 <GridListTile key={i} component={Link} to={"/location/" + location.id}>
                                     <img src={location.image} alt={location.name} />
                                     <GridListTileBar title={location.name} />

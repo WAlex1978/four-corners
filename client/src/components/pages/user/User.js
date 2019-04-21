@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { getVisited } from '../../../services/visited';
 import Appbar from '../../shared/appbar/Appbar';
 import Visited from './Visited';
+import ErrorPage from '../../shared/ErrorPage';
 import { Background } from '../../shared/styled-components';
 
 class User extends Component {
@@ -13,7 +14,12 @@ class User extends Component {
 
     getVisited = async () => {
         const locations = await getVisited(this.state.user);
-        this.setState({locations: locations.data});
+        
+        if (!locations) {
+            this.setState({error: "user not found."})
+        }
+
+        this.setState({locations: locations});
     }
 
     componentWillMount = () => {
@@ -23,7 +29,7 @@ class User extends Component {
     componentWillReceiveProps = async () => {
 
         // Update username and wipe past location data
-        await this.setState({user: this.props.history.location.username, location: []});
+        await this.setState({user: this.props.history.location.username, location: [], error: null});
         this.getVisited();
     }
 
@@ -32,7 +38,8 @@ class User extends Component {
             <Fragment>
                 <Appbar />
                 <Background />
-                <Visited locations={this.state.locations} />
+                {this.state.error ? <ErrorPage error={this.state.error} /> :
+                    <Visited locations={this.state.locations} />}
             </Fragment>
         );
     }

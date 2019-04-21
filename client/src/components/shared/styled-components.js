@@ -33,6 +33,7 @@ export const Wrapper = styled.div`
 
 export const Flex = styled.div`
     display: flex;
+    flex-direction: ${props => props.direction ? props.direction : "row"};
     align-items: center;
     justify-content: center;
 `

@@ -11,14 +11,13 @@ app.get('/', async (req, res) => {
         // Get user's visited list
         const user = await User.findOne({username: req.query.username}, {visited: 1});
 
-        if (user && user.visited) {
-            // For each visited location
-            // Find location id, name, and image
-            // Push result to locations array
-            for (let i = 0; i < user.visited.length; i++) {
-                let data = await Location.find({id: user.visited[i]}, {id: 1, name: 1, image: 1});
-                locations.push(data[0]);
-            }
+        if (!user) {
+            throw new Error("User not found");
+        }
+        
+        for (let i = 0; i < user.visited.length; i++) {
+            let data = await Location.find({id: user.visited[i]}, {id: 1, name: 1, image: 1});
+            locations.push(data[0]);
         }
 
         // Return locations array
