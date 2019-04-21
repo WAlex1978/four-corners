@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
 import { getUser } from '../../../services/user';
 import Appbar from '../../shared/appbar/Appbar';
+import Profile from './profile/Profile';
 import Visited from './Visited';
 import ErrorPage from '../../shared/ErrorPage';
 import { Flex, Background, Wrapper } from '../../shared/styled-components';
@@ -45,13 +46,16 @@ class User extends Component {
     render() { 
         return (
             <Fragment>
-                <Appbar />
                 <Background />
+                <Appbar />
                 {this.state.error ? <ErrorPage error={this.state.error} /> :
                 <Fragment>
                     {this.state.locations && this.state.user ?
-                    <Wrapper>
-                        <Visited locations={this.state.locations} />
+                    <Wrapper width="80%">
+                        <Flex align="flex-start">
+                            <Profile user={this.state.user} />
+                            <Visited locations={this.state.locations} />
+                        </Flex>
                     </Wrapper>
                 : <Flex><Spinner /></Flex> }
                 </Fragment> }

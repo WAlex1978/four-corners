@@ -3,32 +3,6 @@ const jwt = require('jsonwebtoken');
 const Location = require('../models/location');
 const User = require('../models/user');
 
-// Get visited endpoint
-app.get('/', async (req, res) => {
-    try {
-        const locations = [];
-
-        // Get user's visited list
-        const user = await User.findOne({username: req.query.username}, {visited: 1});
-
-        if (!user) {
-            throw new Error("User not found");
-        }
-        
-        for (let i = 0; i < user.visited.length; i++) {
-            let data = await Location.find({id: user.visited[i]}, {id: 1, name: 1, image: 1});
-            locations.push(data[0]);
-        }
-
-        // Return locations array
-        res.send(locations);
-    }
-    catch(err) {
-        console.log(err);
-        res.status(400).send(err.toString());
-    }
-})
-
 // Add visited endpoint
 app.post('/', async (req, res) => {
     try {

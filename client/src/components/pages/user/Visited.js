@@ -16,6 +16,8 @@ const styles = theme => ({
         backgroundColor: theme.palette.background.paper,
     },
     gridList: {
+        paddingLeft: "5px",
+        paddingRight: "5px",
         paddingBottom: "10px",
     }
 });
@@ -27,10 +29,10 @@ class Visited extends Component {
 
     render() {
         return (
-            <Card>
-                <Text align="center">My Visited Locations</Text>
+            <Card style={{flex: 1}}>
+                <Text align="center" margin="10px">My Visited Locations</Text>
                 <div className={this.state.classes.root}>
-                    <GridList cellHeight={250} className={this.state.classes.gridList} cols={2}>
+                    <GridList cellHeight={250} className={this.state.classes.gridList} cols={4}>
                         {this.props.locations.map((location, i) => (
                             <GridListTile key={i} component={Link} to={"/location/" + location.id}>
                                 <img src={location.image} alt={location.name} />

@@ -12,12 +12,13 @@ app.get('/', async (req, res) => {
             throw new Error("User not found");
         }
 
-        // Get user locations
+        // Get user visited locations
         for (let i = 0; i < user.visited.length; i++) {
             let data = await Location.find({id: user.visited[i]}, {id: 1, name: 1, image: 1});
             locations.push(data[0]);
         }
 
+        // Return user and visited locations
         res.send({user: user, locations: locations});
     }
     catch (err) {

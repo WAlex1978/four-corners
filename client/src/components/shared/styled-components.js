@@ -34,8 +34,8 @@ export const Wrapper = styled.div`
 export const Flex = styled.div`
     display: flex;
     flex-direction: ${props => props.direction ? props.direction : "row"};
-    align-items: center;
-    justify-content: center;
+    align-items: ${props => props.align ? props.align : "center"};
+    justify-content: ${props => props.justify ? props.justify : "center"};
 `
 
 export const Card = styled.div`
@@ -51,4 +51,13 @@ export const Card = styled.div`
     @media (max-width: 768px) {
         margin: 5px;
     }
+`
+
+export const Image = styled.div`
+    background-image: url('https://res.cloudinary.com/dmuuoo1bl/image/upload/v1555841951/avatars/default.png');
+    background-position: center;
+    background-size: cover;
+    height: 260px;
+    width: 260px;
+    margin: 10px;
 `

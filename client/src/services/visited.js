@@ -13,18 +13,3 @@ export const addVisited = async (id, token) => {
         console.log(err);
     }
 }
-
-export const getVisited = async (username) => {
-    try {
-        const data = await axios.get('/api/visited', {
-            params: {
-                username: username,
-            }
-        })
-
-        return data;
-    }
-    catch (err) {
-        console.log(err);
-    }
-}
