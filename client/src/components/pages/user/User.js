@@ -15,7 +15,7 @@ class User extends Component {
         locations: [],
     }
 
-    getVisited = async () => {
+    getUser = async () => {
         const user = await getUser(this.state.username);
 
         if (user && user.data) {
@@ -27,7 +27,7 @@ class User extends Component {
     }
 
     componentWillMount = () => {
-        this.getVisited();
+        this.getUser();
     }
 
     componentWillReceiveProps = async () => {
@@ -40,7 +40,7 @@ class User extends Component {
             error: null
         });
 
-        this.getVisited();
+        this.getUser();
     }
 
     render() { 

@@ -18,6 +18,17 @@ app.get('/', async (req, res) => {
             locations.push(data[0]);
         }
 
+        // Alphabetically sort locations
+        locations.sort(function (a, b) {
+            let A=a.name.toLowerCase(), B=b.name.toLowerCase();
+
+            if (A < B)
+                return -1 
+            if (A > B)
+                return 1
+            return 0 
+        });
+
         // Return user and visited locations
         res.send({user: user, locations: locations});
     }
