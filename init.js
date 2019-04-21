@@ -9,7 +9,7 @@ const familia = require('./database_init/familia');
 initLocations = async () => {
     try {
 
-        // Upload images
+        // Upload location images
         const pyramidsImg = await cloudinary.uploader.upload('./images/pyramids.jpg', options = {folder: 'locations'});
         const eiffelImg = await cloudinary.uploader.upload('./images/eiffel.jpg', options = {folder: 'locations'});
         const hollywoodImg = await cloudinary.uploader.upload('./images/hollywood.jpg', options = {folder: 'locations'});

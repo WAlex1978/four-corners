@@ -61,7 +61,7 @@ export const Card = styled.div`
 `
 
 export const Image = styled.div`
-    background-image: url('https://res.cloudinary.com/dmuuoo1bl/image/upload/v1555841951/avatars/default.png');
+    background-image: url('${props => props.image}');
     background-position: center;
     background-size: cover;
     height: 260px;

@@ -9,6 +9,10 @@ const user = mongoose.Schema({
         type: String,
         required: true,
     },
+    avatar: {
+        type: String,
+        default: process.env.DEFAULT_AVATAR_URL,
+    },
     visited: [],
 })
 

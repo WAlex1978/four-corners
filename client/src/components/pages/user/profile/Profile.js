@@ -7,7 +7,7 @@ const Profile = (props) => {
     return (
         <Card width="280px">
             <Text margin="10px" align="center">{props.user.username}</Text>
-            <Image image="https://res.cloudinary.com/dmuuoo1bl/image/upload/v1555841951/avatars/default.png" />
+            <Image image={props.user.avatar} />
             <Divider style={{marginTop: "10px", marginBottom: "10px"}} />
             <Bio bio={props.user.bio} />
         </Card>
