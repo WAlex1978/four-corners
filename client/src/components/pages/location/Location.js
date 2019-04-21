@@ -19,11 +19,12 @@ class Location extends Component {
     getLocation = async () => {
         const data = await getLocation(this.state.id);
 
-        if (!data) {
+        if (data && data.data) {
+            this.setState({location: data});
+        }
+        else {
             this.setState({error: "location not found."});
         }
-
-        this.setState({location: data});
     }
 
     componentWillMount = async () => {
@@ -48,9 +49,9 @@ class Location extends Component {
 
                 {/* If location data exists */}
                 {/* Else, show loading spinner */}
-                {this.state.error ? <ErrorPage error={this.state.error} /> : ( 
+                {this.state.error ? <ErrorPage error={this.state.error} /> : 
                 <Fragment>
-                    {this.state.location && this.state.location.data ? (
+                    {this.state.location && this.state.location.data ? 
                         <Wrapper>
                             <Card>
                                 <Image image={this.state.location.data.image} />
@@ -59,9 +60,9 @@ class Location extends Component {
                                 <Divider />
                                 <Comments id={this.state.id} comments={this.state.location.data.comments} /> 
                             </Card>
-                        </Wrapper>
-                    ) : <Flex><Spinner /></Flex> } 
-                </Fragment> )}
+                        </Wrapper> 
+                    : <Flex><Spinner /></Flex> } 
+                </Fragment> }
             </Fragment>
         );
     }

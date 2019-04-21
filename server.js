@@ -11,6 +11,7 @@ const commentRouter = require('./routes/commentRouter');
 const searchRouter = require('./routes/searchRouter');
 const authRouter = require('./routes/authRouter');
 const visitedRouter = require('./routes/visitedRouter');
+const userRouter = require('./routes/userRouter');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -28,6 +29,7 @@ app.use('/api/comments/', commentRouter);
 app.use('/api/search/', searchRouter);
 app.use('/api/auth/', authRouter);
 app.use('/api/visited/', visitedRouter);
+app.use('/api/user/', userRouter);
 
 module.exports = app.listen(PORT, () => {
 	console.log(`Listening on port ${PORT}`);

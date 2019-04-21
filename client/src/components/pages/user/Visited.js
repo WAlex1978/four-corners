@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Flex } from '../../shared/styled-components';
-import Spinner from '../../shared/Spinner';
+import { Card, Text } from '../../shared/styled-components';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -17,8 +16,7 @@ const styles = theme => ({
         backgroundColor: theme.palette.background.paper,
     },
     gridList: {
-        paddingTop: "25px",
-        paddingBottom: "25px",
+        paddingBottom: "10px",
     }
 });
 
@@ -30,17 +28,17 @@ class Visited extends Component {
     render() {
         return (
             <Card>
-                {this.props.locations && this.props.locations.data ? 
-                    <div className={this.state.classes.root}>
-                        <GridList cellHeight={250} className={this.state.classes.gridList} cols={2}>
-                            {this.props.locations.data.map((location, i) => (
-                                <GridListTile key={i} component={Link} to={"/location/" + location.id}>
-                                    <img src={location.image} alt={location.name} />
-                                    <GridListTileBar title={location.name} />
-                                </GridListTile>
-                            ))}
-                        </GridList>
-                    </div> : <Flex><Spinner /></Flex> }
+                <Text align="center">My Visited Locations</Text>
+                <div className={this.state.classes.root}>
+                    <GridList cellHeight={250} className={this.state.classes.gridList} cols={2}>
+                        {this.props.locations.map((location, i) => (
+                            <GridListTile key={i} component={Link} to={"/location/" + location.id}>
+                                <img src={location.image} alt={location.name} />
+                                <GridListTileBar title={location.name} />
+                            </GridListTile>
+                        ))}
+                    </GridList>
+                </div>
             </Card>
         );
     }

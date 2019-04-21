@@ -1,25 +1,28 @@
 import React, { Component, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
-import { getVisited } from '../../../services/visited';
+import { getUser } from '../../../services/user';
 import Appbar from '../../shared/appbar/Appbar';
 import Visited from './Visited';
 import ErrorPage from '../../shared/ErrorPage';
-import { Background } from '../../shared/styled-components';
+import { Flex, Background, Wrapper } from '../../shared/styled-components';
+import Spinner from '../../shared/Spinner';
 
 class User extends Component {
     state = {
-        user: this.props.match.params.user,
+        username: this.props.match.params.user,
+        user: null,
         locations: [],
     }
 
     getVisited = async () => {
-        const locations = await getVisited(this.state.user);
-        
-        if (!locations) {
-            this.setState({error: "user not found."})
-        }
+        const user = await getUser(this.state.username);
 
-        this.setState({locations: locations});
+        if (user && user.data) {
+            this.setState({user: user.data.user, locations: user.data.locations});
+        }
+        else {
+            this.setState({error: "user not found."});
+        }
     }
 
     componentWillMount = () => {
@@ -29,7 +32,13 @@ class User extends Component {
     componentWillReceiveProps = async () => {
 
         // Update username and wipe past location data
-        await this.setState({user: this.props.history.location.username, location: [], error: null});
+        await this.setState({
+            username: this.props.history.location.username, 
+            user: null, 
+            location: [], 
+            error: null
+        });
+
         this.getVisited();
     }
 
@@ -39,7 +48,13 @@ class User extends Component {
                 <Appbar />
                 <Background />
                 {this.state.error ? <ErrorPage error={this.state.error} /> :
-                    <Visited locations={this.state.locations} />}
+                <Fragment>
+                    {this.state.locations && this.state.user ?
+                    <Wrapper>
+                        <Visited locations={this.state.locations} />
+                    </Wrapper>
+                : <Flex><Spinner /></Flex> }
+                </Fragment> }
             </Fragment>
         );
     }
