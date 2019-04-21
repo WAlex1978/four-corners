@@ -36,6 +36,10 @@ export const Flex = styled.div`
     flex-direction: ${props => props.direction ? props.direction : "row"};
     align-items: ${props => props.align ? props.align : "center"};
     justify-content: ${props => props.justify ? props.justify : "center"};
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
 `
 
 export const Card = styled.div`
@@ -46,10 +50,12 @@ export const Card = styled.div`
     margin-bottom: 20px;
     margin-left: 5px;
     margin-right: 5px;
+    width: ${props => props.width ? props.width : null};
     overflow: hidden;
 
     @media (max-width: 768px) {
         margin: 5px;
+        width: 100%;
         display: ${props => props.hide ? "none" : null};
     }
 `
@@ -60,5 +66,5 @@ export const Image = styled.div`
     background-size: cover;
     height: 260px;
     width: 260px;
-    margin: 10px;
+    margin: auto;
 `
