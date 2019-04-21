@@ -11,6 +11,10 @@ const comment = mongoose.Schema({
         type: String,
         required: true,
     },
+    avatar: {
+        type: String,
+        required: true,
+    },
     date: {
         type: String,
         default: dateFormat(now, "mmmm dS, yy"),

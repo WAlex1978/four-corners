@@ -1,6 +1,7 @@
 const app = require('express').Router();
 const jwt = require('jsonwebtoken');
 const Location = require('../models/location');
+const User = require('../models/user');
 const Comment = require('../models/comment');
 
 // Get comments endpoint
@@ -27,11 +28,15 @@ app.post('/', async (req, res) => {
         }
 
         // Decode JSON Web Token, extract username
-        // Post comment to location by location ID
+        // Find user to extract avatar
         const username = jwt.decode(req.body.token);
+        const avatar = await User.findOne({username: username.username}, {avatar: 1});
+
+        // Post comment to location by location id
         const comment = new Comment({
             name: username.username,
             body: req.body.body,
+            avatar: avatar.avatar,
         });
         const data = await Location.updateOne(
             {id: req.body.id},

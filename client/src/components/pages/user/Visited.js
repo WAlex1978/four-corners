@@ -43,6 +43,7 @@ class Visited extends Component {
                             ))}
                         </GridList>
                     </div> :
+                    
                 <Fragment>
                     <Divider />
                     <Text margin="10px" size=".95rem" align="center">User has not yet visited any locations.</Text> 

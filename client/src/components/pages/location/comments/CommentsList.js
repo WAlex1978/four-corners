@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { withRouter } from 'react-router-dom';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -9,6 +10,10 @@ import Typography from '@material-ui/core/Typography';
 import Fade from '@material-ui/core/Fade';
 
 const CommentsList = (props) => {
+    const redirect = (name) => {
+        props.history.push('/user/' + name);
+    }
+
     return (
         <List style={{marginBottom: "50px"}}>
             {props.comments.map((comment, i) => (
@@ -16,13 +21,15 @@ const CommentsList = (props) => {
                     {i !== 0 ? <Divider/> : null}
                     <Fade in>
                         <ListItem alignItems="flex-start">
-                            <ListItemAvatar>
-                                <Avatar src="/images/avatar.png"/>
+                            <ListItemAvatar style={{cursor: "pointer"}}>
+                                <Avatar onClick={() => redirect(comment.name)} src={comment.avatar} />
                             </ListItemAvatar>
                             <ListItemText 
                                 primary = {
                                     <Fragment>
-                                        {comment.name}
+                                        <div onClick={() => redirect(comment.name)} style={{cursor: "pointer"}}>
+                                            {comment.name}
+                                        </div>
                                         <Typography paragraph color="textPrimary">
                                             {comment.body}
                                         </Typography>
@@ -37,4 +44,4 @@ const CommentsList = (props) => {
     )
 }
 
-export default CommentsList
+export default withRouter (CommentsList);
