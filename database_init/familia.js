@@ -29,7 +29,7 @@ const familia = new Location({
         a church building anything like it in the entire history of art", and Paul Goldberger describes it as "the most 
         extraordinary personal interpretation of Gothic architecture since the Middle Ages".`
     ],
-    ref: "https://en.wikipedia.org/wiki/Sagrada_Fam%C3%ADlia",
+    ref: "https://en.wikipedia.org/wiki/Sagrada_Familia",
 })
 
 module.exports = familia;
