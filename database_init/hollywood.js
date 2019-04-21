@@ -2,7 +2,6 @@ const Location = require('../models/location');
 
 const hollywood = new Location({
     id: "hollywood",
-    image: "/images/hollywood.jpg",
     name: "Hollywood Sign",
     location: "Los Angeles, California",
     desc: [

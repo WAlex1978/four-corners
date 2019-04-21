@@ -2,7 +2,6 @@ const Location = require('../models/location');
 
 const eiffel = new Location({
     id: "eiffel",
-    image: "/images/eiffel.jpg",
     name: "Eiffel Tower",
     location: "Paris, France",
     desc: [

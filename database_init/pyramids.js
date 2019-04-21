@@ -2,7 +2,6 @@ const Location = require('../models/location');
 
 const pyramids = new Location({
     id: "pyramids",
-    image: "/images/pyramids.jpg",
     name: "Great Pyramids",
     location: "Giza, Egypt",
     desc: [
