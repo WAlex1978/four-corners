@@ -9,6 +9,10 @@ const LoginForm = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    if (props.token) {
+        props.history.goBack();
+    }
+    
     const onSubmit = async (e) => {
         e.preventDefault();
 
@@ -19,8 +23,6 @@ const LoginForm = (props) => {
         if (token && token.data) {
             saveState(token.data);
             props.logIn(token.data);
-
-            props.history.goBack();
         }
     }
 
@@ -49,5 +51,11 @@ const mapDispatchToProps = (dispatch) => {
         })}
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        token: state.token,
+    }
+}
  
-export default withRouter (connect (null, mapDispatchToProps) (LoginForm));
+export default withRouter (connect (mapStateToProps, mapDispatchToProps) (LoginForm));

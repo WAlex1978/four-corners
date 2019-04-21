@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Navbar, NavbarBrand, Nav, NavItem } from 'shards-react';
 import { Dropdown, DropdownMenu, DropdownItem } from 'shards-react';
 import { faUser } from "@fortawesome/free-solid-svg-icons";
@@ -15,6 +15,13 @@ class Appbar extends Component {
 
     toggleDropdown = () => {
         this.setState({ dropdownOpen: !this.state.dropdownOpen });
+    }
+
+    logOut = () => {
+        localStorage.removeItem('user');
+        this.props.logOut();
+
+        this.props.history.push('/login');
     }
 
     render() {
@@ -35,7 +42,7 @@ class Appbar extends Component {
                         {this.props.token ? 
                         <Fragment>
                             <DropdownItem tag={Link} to={"/user/" + decode(this.props.token).username}>My Profile</DropdownItem>
-                            <DropdownItem tag={Link} to="/">Logout</DropdownItem>
+                            <DropdownItem onClick={() => this.logOut()}>Logout</DropdownItem>
                         </Fragment> : 
                         <Fragment>
                             <DropdownItem tag={Link} to="/login">Log In</DropdownItem>
@@ -60,4 +67,8 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect (mapStateToProps) (Appbar);
+const mapDispatchToProps = (dispatch) => {
+    return {logOut: () => { dispatch({ type: "LOG_OUT" }) }}
+}
+
+export default withRouter (connect (mapStateToProps, mapDispatchToProps) (Appbar));

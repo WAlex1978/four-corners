@@ -16,7 +16,7 @@ const Visited = (props) => {
 
     // Check if username has visited current location
     const checkVisited = () => { 
-        if (username === null) {
+        if (!props.token) {
             return true;
         }
 
