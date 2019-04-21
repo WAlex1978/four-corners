@@ -32,7 +32,7 @@ class Visited extends Component {
             <Card style={{flex: 1}}>
                 <Text align="center" margin="10px">My Visited Locations</Text>
                 <div className={this.state.classes.root}>
-                    <GridList cellHeight={250} className={this.state.classes.gridList} cols={4}>
+                    <GridList cellHeight={250} className={this.state.classes.gridList} cols={3}>
                         {this.props.locations.map((location, i) => (
                             <GridListTile key={i} component={Link} to={"/location/" + location.id}>
                                 <img src={location.image} alt={location.name} />
