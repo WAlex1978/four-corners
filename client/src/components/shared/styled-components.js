@@ -64,7 +64,7 @@ export const Image = styled.div`
     background-image: url('${props => props.image}');
     background-position: center;
     background-size: cover;
-    height: 220px;
-    width: 220px;
+    height: ${props => props.height ? props.height : "100%"};
+    width: ${props => props.width ? props.width : "100%"};
     margin: auto;
 `

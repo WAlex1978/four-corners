@@ -7,7 +7,7 @@ const Profile = (props) => {
     return (
         <Card width="250px">
             <Text margin="5px" align="center">{props.user.username}</Text>
-            <Image image={props.user.avatar} />
+            <Image image={props.user.avatar} height="220px" width="220px" />
             <Divider style={{marginTop: "10px", marginBottom: "10px"}} />
             <Bio bio={props.user.bio} />
         </Card>
