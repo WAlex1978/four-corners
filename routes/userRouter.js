@@ -1,4 +1,5 @@
 const app = require('express').Router();
+const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const Location = require('../models/location');
 const cloudinary = require('cloudinary').v2;
@@ -64,7 +65,7 @@ app.post('/avatar', async (req, res) => {
         }
 
         // Verify file is of a supported format
-        if (req.file.image.format !== 'png' || req.file.image.format !== 'jpg') {
+        if (req.files.image.mimetype !== 'image/png' && req.files.image.mimetype !== 'image/jpg') {
             throw new Error("Unsupported filetype");
         }
         
