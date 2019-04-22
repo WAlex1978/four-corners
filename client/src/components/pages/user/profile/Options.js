@@ -4,7 +4,7 @@ import { faCog } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Divider from '@material-ui/core/Divider';
 
-const Options = () => {
+const Options = (props) => {
     return (
         <Fragment>
             <Divider />
@@ -12,7 +12,7 @@ const Options = () => {
                 <FontAwesomeIcon icon={faCog} style={{marginRight: "10px"}} />
                 Update Biography
             </Text>
-            <Text margin="10px" size=".9rem">
+            <Text margin="10px" size=".9rem" onClick={() => props.upload()}>
                 <FontAwesomeIcon icon={faCog} style={{marginRight: "10px"}} />
                 Update Avatar
             </Text>

@@ -75,12 +75,12 @@ app.post('/avatar', async (req, res) => {
         // Decode JSON Web Token, extract username
         // Find user to update avatar
         const username = jwt.decode(req.body.token);
-        const data = await User.updateOne(
+        await User.updateOne(
             {username: username.username}, 
             {avatar: upload.url}
         );
 
-        res.send(data);
+        res.send(upload);
     }
     catch (err) {
         console.log(err);

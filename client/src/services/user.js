@@ -17,14 +17,13 @@ export const getUser = async (username) => {
 
 export const uploadAvatar = async (formData) => {
     try {
-        console.log(formData)
         const data = await axios.post('/api/user/avatar', formData, {
             headers: {
                 'Content-Type' : 'multipart/form-data'
             }
         })
 
-        console.log(data);
+        return data;
     }
     catch (err) {
         console.log(err);
