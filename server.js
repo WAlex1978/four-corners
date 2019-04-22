@@ -1,5 +1,6 @@
 const express = require ('express');
 const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const path = require('path');
 require('./connection');
@@ -16,6 +17,7 @@ const userRouter = require('./routes/userRouter');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
+app.use(fileUpload());
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'));
