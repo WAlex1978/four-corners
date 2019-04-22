@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const LoginCard = styled.div`
-    background-color: rgb(250, 250, 250);
+    background-color: #fff;
     border-radius: 5px;
     border: solid 1px rgb(25, 25, 25);
     display: flex;
