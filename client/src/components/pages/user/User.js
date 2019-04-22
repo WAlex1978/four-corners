@@ -56,7 +56,7 @@ class User extends Component {
                         <Flex align="flex-start">
                             <Profile user={this.state.user} />
                             <div style={{flex: 1}}>
-                                <Favorite user={this.state.user} locations={this.state.locations} />
+                                {/* <Favorite user={this.state.user} locations={this.state.locations} /> */}
                                 <Visited locations={this.state.locations} />
                             </div>
                         </Flex>
