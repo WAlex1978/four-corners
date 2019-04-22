@@ -14,13 +14,14 @@ class Location extends Component {
     state = {
         id: null,
         location: null,
+        avatars: null,
     }
 
     getLocation = async () => {
         const data = await getLocation(this.state.id);
 
         if (data && data.data) {
-            this.setState({location: data});
+            this.setState({location: data.data.location, avatars: data.data.avatars});
         }
         else {
             this.setState({error: "location not found."});
@@ -37,7 +38,7 @@ class Location extends Component {
 
         // Update location id and wipe previous location data
         // Fetch location data
-        await this.setState({id: this.props.history.location.pathname.slice(10), location: null, error: null});
+        await this.setState({id: this.props.history.location.pathname.slice(10), location: null, avatars: null, error: null});
         this.getLocation();
     }
 
@@ -51,14 +52,14 @@ class Location extends Component {
                 {/* Else, show loading spinner */}
                 {this.state.error ? <ErrorPage error={this.state.error} /> : 
                 <Fragment>
-                    {this.state.location && this.state.location.data ? 
+                    {this.state.location ? 
                         <Wrapper>
                             <Card>
-                                <Image image={this.state.location.data.image} />
-                                <Toolbar id={this.state.id} visited={this.state.location.data.visited} />
-                                <Body location={this.state.location.data} />
+                                <Image image={this.state.location.image} />
+                                <Toolbar id={this.state.id} visited={this.state.location.visited} />
+                                <Body location={this.state.location} />
                                 <Divider />
-                                <Comments id={this.state.id} comments={this.state.location.data.comments} /> 
+                                <Comments id={this.state.id} comments={this.state.location.comments} avatars={this.state.avatars} /> 
                             </Card>
                         </Wrapper> 
                     : <Flex><Spinner /></Flex> } 

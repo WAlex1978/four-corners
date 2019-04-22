@@ -11,6 +11,7 @@ class Comments extends Component {
     state = {
         body: '',
         comments: this.props.comments,
+        avatars: this.props.avatars,
     }
 
     onChange = (e) => {
@@ -26,7 +27,10 @@ class Comments extends Component {
         }
 
         const data = await getComments(this.props.id);
-        this.setState({ body: '', comments: data.data })
+
+        if (data && data.data) {
+            this.setState({ body: '', comments: data.data.comments, avatars: data.data.avatars })
+        }
     }
 
     render() { 
@@ -48,7 +52,9 @@ class Comments extends Component {
                         <Text size="1.1rem" align="center">Log in to leave a comment</Text>
                     </Link> }
 
-                {this.state.comments ? <CommentsList comments={this.state.comments} /> : <Flex><Spinner /></Flex> }
+                {this.state.comments ? 
+                    <CommentsList comments={this.state.comments} avatars={this.state.avatars} /> : 
+                <Flex><Spinner /></Flex> }
             </Wrapper>
         );
     }

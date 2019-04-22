@@ -1,5 +1,6 @@
 const app = require('express').Router();
 const Location = require('../models/location');
+const User = require('../models/user');
 
 // Search locations endpoint
 app.get('/', async (req, res) => {
@@ -27,12 +28,19 @@ app.get('/', async (req, res) => {
 
 app.get('/location', async (req, res) => {
     try {
+        const avatars = [];
+
         const data = await Location.findOne({id: req.query.id});
         if (!data) {
             throw new Error("Location not found");
         }
 
-        res.send(data);
+        for (let i = 0; i < data.comments.length; i++) {
+            let avatar = await User.findOne({username: data.comments[i].name}, {avatar: 1});
+            avatars.push(avatar);
+        }
+
+        res.send({location: data, avatars: avatars});
     }
     catch (err) {
         console.log(err);

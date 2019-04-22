@@ -22,7 +22,7 @@ const CommentsList = (props) => {
                     <Fade in>
                         <ListItem alignItems="flex-start">
                             <ListItemAvatar style={{cursor: "pointer"}}>
-                                <Avatar onClick={() => redirect(comment.name)} src={comment.avatar} />
+                                <Avatar onClick={() => redirect(comment.name)} src={props.avatars[i].avatar} />
                             </ListItemAvatar>
                             <ListItemText 
                                 primary = {
