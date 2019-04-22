@@ -37,7 +37,7 @@ class Location extends Component {
 
         // Update location id and wipe previous location data
         // Fetch location data
-        await this.setState({id: this.props.history.location.id, location: null, error: null});
+        await this.setState({id: this.props.history.location.pathname.slice(10), location: null, error: null});
         this.getLocation();
     }
 
