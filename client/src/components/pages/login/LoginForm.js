@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { FormInput, Button} from "shards-react";
 import { logIn } from '../../../services/auth';
 import { saveState } from '../../../localStorage';
+import { Text } from '../../shared/styled-components';
 
 const LoginForm = (props) => {
     const [username, setUsername] = useState('');
@@ -38,7 +39,10 @@ const LoginForm = (props) => {
         <form onSubmit={onSubmit} style={{width: "100%"}}>
             <FormInput placeholder="Username" value={username} onChange={changeUsername}/>
             <FormInput placeholder="Password" type="password" value={password} onChange={changePassword} />
-            <Button block theme="primary" type="submit" style={{marginTop: "15px"}}>Log In</Button>
+            <Button block theme="primary" type="submit" style={{marginTop: "15px", marginBottom: "5px"}}>Log In</Button>
+            <Text size=".95rem" align="center" onClick={() => props.history.goBack()} style={{cursor: "pointer"}}>
+                Back
+            </Text>
         </form>
     );
 }
