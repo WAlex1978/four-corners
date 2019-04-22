@@ -23,10 +23,7 @@ const Search = (props) => {
         }
 
         if (data && data.data.length === 1) {
-            props.history.push({
-                pathname: '/location/' + data.data[0].id,
-                id: data.data[0].id,
-            });
+            props.history.push('/location/' + data.data[0].id);
         }
     }
 

@@ -34,7 +34,7 @@ class User extends Component {
 
         // Update username and wipe past location data
         await this.setState({
-            username: this.props.history.location.username, 
+            username: this.props.history.location.pathname.slice(6),
             user: null, 
             location: [], 
             error: null
