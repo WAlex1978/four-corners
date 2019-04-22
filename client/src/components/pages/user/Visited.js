@@ -17,10 +17,10 @@ const styles = theme => ({
         backgroundColor: theme.palette.background.paper,
     },
     gridList: {
-        paddingLeft: "5px",
-        paddingRight: "5px",
-        paddingBottom: "10px",
-    }
+        paddingLeft: "10px",
+        paddingRight: "10px",
+        paddingBottom: "20px",
+    },
 });
 
 class Visited extends Component {
@@ -31,15 +31,17 @@ class Visited extends Component {
     render() {
         return (
             <Card style={{flex: 1}}>
-                <Text align="center" margin="10px">My Visited Locations ( {this.props.locations.length} )</Text>
+                <Text align="center" margin="5px">My Visited Locations ( {this.props.locations.length} )</Text>
                 {this.props.locations.length > 0 ?
                     <div className={this.state.classes.root}>
-                        <GridList cellHeight={250} className={this.state.classes.gridList} cols={3}>
+                        <GridList cellHeight={220} className={this.state.classes.gridList} spacing={10} cols={3}>
                             {this.props.locations.map((location, i) => (
-                                <GridListTile key={i} component={Link} to={"/location/" + location.id}>
+
+                                <GridListTile key={i} component={Link} to={"/location/" + location.id} >
                                     <img src={location.image} alt={location.name} />
                                     <GridListTileBar title={location.name} />
                                 </GridListTile>
+
                             ))}
                         </GridList>
                     </div> :

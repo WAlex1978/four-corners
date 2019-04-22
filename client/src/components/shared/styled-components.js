@@ -45,7 +45,7 @@ export const Flex = styled.div`
 export const Card = styled.div`
     background-color: #fff;
     border: 1px solid rgb(214, 222, 229);
-    border-radius: 10px;
+    border-radius: 5px;
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left: 5px;
@@ -64,7 +64,7 @@ export const Image = styled.div`
     background-image: url('${props => props.image}');
     background-position: center;
     background-size: cover;
-    height: 260px;
-    width: 260px;
+    height: 220px;
+    width: 220px;
     margin: auto;
 `
