@@ -18,10 +18,7 @@ class Appbar extends Component {
     }
 
     logOut = () => {
-        localStorage.removeItem('user');
-        this.props.logOut();
-
-        this.props.history.push('/login');
+        this.props.history.push('/logout');
     }
 
     render() {
@@ -72,8 +69,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {logOut: () => { dispatch({ type: "LOG_OUT" }) }}
-}
-
-export default withRouter (connect (mapStateToProps, mapDispatchToProps) (Appbar));
+export default withRouter (connect (mapStateToProps) (Appbar));
