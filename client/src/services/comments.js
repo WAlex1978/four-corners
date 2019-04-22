@@ -23,7 +23,7 @@ export const postComment = async (id, token, body) => {
             body: body,
         })
 
-        console.log(data);
+        return data;
     }  
     catch (err) {
         console.log(err)

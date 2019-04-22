@@ -8,11 +8,11 @@ const Options = (props) => {
     return (
         <Fragment>
             <Divider />
-            <Text margin="10px" size=".9rem">
+            <Text margin="10px" size=".9rem" style={{cursor: "pointer"}}>
                 <FontAwesomeIcon icon={faCog} style={{marginRight: "10px"}} />
                 Update Biography
             </Text>
-            <Text margin="10px" size=".9rem" onClick={() => props.upload()}>
+            <Text margin="10px" size=".9rem" style={{cursor: "pointer"}} onClick={() => props.upload()}>
                 <FontAwesomeIcon icon={faCog} style={{marginRight: "10px"}} />
                 Update Avatar
             </Text>

@@ -46,8 +46,10 @@ app.post('/', async (req, res) => {
             {id: req.body.id},
             {$addToSet: {comments: comment}}   
         );
+
+        const avatar = await User.findOne({username: username.username}, {avatar: 1});
         
-        res.send(data);
+        res.send({comment: comment, avatar: avatar, data: data});
     }
     catch (err) {
         console.log(err);

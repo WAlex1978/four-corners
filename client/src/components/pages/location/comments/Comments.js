@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { InputGroup, InputGroupAddon, FormInput, Button} from "shards-react";
 import { Wrapper, Text, Flex } from '../../../shared/styled-components';
-import { getComments, postComment } from '../../../../services/comments';
+import { postComment } from '../../../../services/comments';
 import CommentsList from './CommentsList';
 import Spinner from '../../../shared/Spinner';
 
@@ -21,15 +21,18 @@ class Comments extends Component {
     onSubmit = async (e) => {
         e.preventDefault();
 
+        let data = null;
         // If comment is not an empty string
         if (this.state.body !== '') {
-            await postComment(this.props.id, this.props.token, this.state.body);
+            data = await postComment(this.props.id, this.props.token, this.state.body);
         }
 
-        const data = await getComments(this.props.id);
-
         if (data && data.data) {
-            this.setState({ body: '', comments: data.data.comments, avatars: data.data.avatars })
+            this.setState({ 
+                body: '', 
+                comments: [...this.state.comments, data.data.comment], 
+                avatars: [...this.state.avatars, data.data.avatar],
+            })
         }
     }
 
