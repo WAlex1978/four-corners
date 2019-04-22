@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { getUser } from '../../../services/user';
 import Appbar from '../../shared/appbar/Appbar';
 import Profile from './profile/Profile';
+import Favorite from './Favorite';
 import Visited from './Visited';
 import ErrorPage from '../../shared/ErrorPage';
 import { Flex, Background, Wrapper } from '../../shared/styled-components';
@@ -54,7 +55,10 @@ class User extends Component {
                     <Wrapper width="80%">
                         <Flex align="flex-start">
                             <Profile user={this.state.user} />
-                            <Visited locations={this.state.locations} />
+                            <div style={{flex: 1}}>
+                                <Favorite user={this.state.user} locations={this.state.locations} />
+                                <Visited locations={this.state.locations} />
+                            </div>
                         </Flex>
                     </Wrapper>
                 : <Flex><Spinner /></Flex> }

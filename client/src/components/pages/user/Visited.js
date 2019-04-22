@@ -30,11 +30,11 @@ class Visited extends Component {
 
     render() {
         return (
-            <Card style={{flex: 1}}>
+            <Card>
                 <Text align="center" margin="5px">My Visited Locations ( {this.props.locations.length} )</Text>
                 {this.props.locations.length > 0 ?
                     <div className={this.state.classes.root}>
-                        <GridList cellHeight={220} className={this.state.classes.gridList} spacing={10} cols={3}>
+                        <GridList className={this.state.classes.gridList} spacing={10} cols={3}>
                             {this.props.locations.map((location, i) => (
 
                                 <GridListTile key={i} component={Link} to={"/location/" + location.id} >
