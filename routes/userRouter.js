@@ -86,6 +86,35 @@ app.post('/avatar', async (req, res) => {
         console.log(err);
         res.status(400).send(err);
     }
+});
+
+// Update bio endpoint
+app.post('/bio', async (req, res) => {
+    try {
+
+        // Verify user JSON Web Token
+        if (!await jwt.verify(req.body.token, 'secretPW')) {
+            throw new Error ("Invalid credentials");
+        }
+
+        if (!req.body.bio || req.body.bio === '') {
+            throw new Error ("Unable to update bio");
+        }
+
+        // Decode JSON Web Token, extract username
+        // Find user to update bio
+        const username = jwt.decode(req.body.token);
+        const data = await User.updateOne(
+            {username: username.username}, 
+            {bio: req.body.bio}
+        );
+
+        res.send(data);
+    }
+    catch (err) {
+        console.log(err);
+        res.status(400).send(err);
+    }
 })
 
 module.exports = app;
