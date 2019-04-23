@@ -22,8 +22,14 @@ const Search = (props) => {
             data = await search(params);
         }
 
-        if (data && data.data.length === 1) {
-            props.history.push('/location/' + data.data[0].id);
+        if (data && data.data) {
+
+            if (data.data.length === 1) {
+                props.history.push('/location/' + data.data[0].id);
+            }
+            else {
+                props.history.push({pathname: '/', locations: data.data});
+            }
         }
     }
 

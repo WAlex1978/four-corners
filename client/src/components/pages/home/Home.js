@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { withRouter } from 'react-router-dom';
 import { search } from '../../../services/search';
 import { Flex } from '../../shared/styled-components';
 import Appbar from '../../shared/appbar/Appbar';
@@ -10,9 +11,27 @@ class Home extends Component {
         locations: null,
     }
 
-    componentWillMount = async () => {
+    getLocations = async () => {
         const data = await search();
         this.setState({locations: data});
+    }
+
+    componentWillMount = async () => {
+        if (!this.props.history.location.locations) {
+            this.getLocations();
+        }
+        else {
+            await this.setState({locations: {data: this.props.history.location.locations}});
+        }
+    }
+
+    componentWillReceiveProps = async () => {
+        if (this.props.history.location.locations) {
+            await this.setState({locations: {data: this.props.history.location.locations}});
+        }
+        else {
+            this.getLocations();
+        }
     }
 
     render() { 
@@ -25,4 +44,4 @@ class Home extends Component {
     }
 }
  
-export default Home;
+export default withRouter (Home);
