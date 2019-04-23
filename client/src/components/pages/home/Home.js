@@ -12,26 +12,21 @@ class Home extends Component {
     }
 
     getLocations = async () => {
-        const data = await search();
-        this.setState({locations: data});
-    }
-
-    componentWillMount = async () => {
-        if (!this.props.history.location.locations) {
-            this.getLocations();
-        }
-        else {
-            await this.setState({locations: {data: this.props.history.location.locations}});
-        }
-    }
-
-    componentWillReceiveProps = async () => {
         if (this.props.history.location.locations) {
             await this.setState({locations: {data: this.props.history.location.locations}});
         }
         else {
-            this.getLocations();
+            const data = await search();
+            this.setState({locations: data});
         }
+    }
+
+    componentWillMount = async () => {
+        this.getLocations();
+    }
+
+    componentWillReceiveProps = async () => {
+        this.getLocations();
     }
 
     render() { 
