@@ -7,6 +7,9 @@ const hollywood = require('./database_init/hollywood');
 const familia = require('./database_init/familia');
 const palace = require('./database_init/palace');
 const fuji = require('./database_init/fuji');
+const london = require('./database_init/london');
+const vegas = require('./database_init/vegas');
+const khalifa = require('./database_init/khalifa');
 
 initLocations = async () => {
     try {
@@ -21,6 +24,9 @@ initLocations = async () => {
         const familiaImg = await cloudinary.uploader.upload('./images/familia.jpg', options = {folder: 'locations'});
         const palaceImg = await cloudinary.uploader.upload('./images/palace.jpg', options = {folder: 'locations'});
         const fujiImg = await cloudinary.uploader.upload('./images/fuji.jpg', options = {folder: 'locations'});
+        const londonImg = await cloudinary.uploader.upload('./images/london.jpg', options = {folder: 'locations'});
+        const vegasImg = await cloudinary.uploader.upload('./images/vegas.jpg', options = {folder: 'locations'});
+        const khalifaImg = await cloudinary.uploader.upload('./images/khalifa.jpg', options = {folder: 'locations'});
 
         // Define image url
         pyramids.image = pyramidsImg.url;
@@ -29,6 +35,9 @@ initLocations = async () => {
         familia.image = familiaImg.url;
         palace.image = palaceImg.url;
         fuji.image = fujiImg.url;
+        london.image = londonImg.url;
+        vegas.image = vegasImg.url;
+        khalifa.image = khalifaImg.url;
 
         // Save to database
         await pyramids.save();
@@ -37,6 +46,9 @@ initLocations = async () => {
         await familia.save();
         await palace.save();
         await fuji.save();
+        await london.save();
+        await vegas.save();
+        await khalifa.save();
 
         connection.close();
         console.log("Database Initialized");
