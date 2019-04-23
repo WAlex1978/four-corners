@@ -29,3 +29,14 @@ export const uploadAvatar = async (formData) => {
         console.log(err);
     }
 }
+
+export const updateBio = async (bio, token) => {
+    try {
+        const data = await axios.post('/api/user/bio', {bio: bio, token: token});
+
+        return data;
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
