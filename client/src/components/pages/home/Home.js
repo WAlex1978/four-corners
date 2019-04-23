@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { search } from '../../../services/search';
-import { Flex, Background, Card, Wrapper } from '../../shared/styled-components';
+import { Flex } from '../../shared/styled-components';
 import Appbar from '../../shared/appbar/Appbar';
 import Spinner from '../../shared/Spinner';
 import LocationsGrid from './LocationsGrid';
@@ -17,15 +17,10 @@ class Home extends Component {
 
     render() { 
         return (
-            <Background>
+            <Fragment>
                 <Appbar />
-                {this.state.locations ? 
-                    <Wrapper>
-                        <Card>
-                            <LocationsGrid locations={this.state.locations} />
-                        </Card>
-                    </Wrapper> : <Flex><Spinner /></Flex> }
-            </Background>
+                {this.state.locations ? <LocationsGrid locations={this.state.locations} /> : <Flex><Spinner /></Flex> }
+            </Fragment>
         );
     }
 }

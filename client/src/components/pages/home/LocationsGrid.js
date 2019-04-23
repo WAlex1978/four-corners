@@ -15,8 +15,7 @@ const styles = theme => ({
         backgroundColor: theme.palette.background.paper,
     },
     gridList: {
-        paddingTop: "10px",
-        paddingBottom: "10px",
+        padding: "10px"
     }
 });
 
